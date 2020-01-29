@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>Casa de Show</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-defaut navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header"></div>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li role="presentation"><img class="logo" src="/imagens/L_logo.png" width="2%" height="2%"></li>
+			<li role="presentation"><a href="/home">Home</a></li>
+			<li role="presentation"><a href="/home/casadeshow">Casa de Show</a></li>
+			<li role="presentation"><a href="/home/eventos">Eventos</a></li>
+			<li role="presentation"><a href="/home/historico">Histórico</a></li>
+		</ul>
+	</nav>
+	
+	<form class="form-horizontal" method="POST" action="/home/casadeshow">
+	<div class="panel panel-casa panel-defaut">
+		<div  class="panel heading">
+			<div class="clearfix">
+			<h3 style="padding-top: 1%;padding-bottom:1%;" class="panel-title panel-casa" align="center">Domum Amet</h3>
+			</div>
+		</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="banda" class="col-sm-2 control-label">Banda</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="banda" name="banda"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="data" class="col-sm-2 control-label">Data do Show</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="data" name="data" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="data" class="col-sm-2 control-label">Preço do Ingresso</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="preco" name="preco" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="genero" class="col-sm-2 control-label">Gênero</label>
+					<div class="col-sm-2">
+						<select class="form-control" id ="genero" name="genero">
+							<option value ="ROCK">Rock</option>
+							<option value ="POP">Pop</option>
+							<option value ="RAP">Rap</option>
+						</select> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="info" class="col-sm-2 control-label">Informação</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="info" name="info"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-sn-10">
+						<button type="submit" class="btn btn-salvar btn-primary">Salvar</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="imagem" class="col-sm-2 control-label">Imagem</label>
+					<div class="col-sm-2">
+						<input type="image" accept="image/*" class="form-control" id="imagem" name="imagem" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-sn-10">
+						<button type="submit" class="btn btn-salvar btn-primary">Salvar Imagem</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	
+</body>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+</html>

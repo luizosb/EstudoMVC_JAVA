@@ -1,6 +1,23 @@
+/*----HOME----*/
+.logo{
+	margin-left:1%;
+	margin-top:1%;
+}
+
+body{
+	background-color: #BFB6BF;
+}
+.navbar{
+	background-color: gray;
+}
+.nav a{
+	color: black;	
+}
+
 .card-arctic{
-	margin-left: 10%;
-	margin-top: 10%;
+	background-color : white;
+	margin-left: 5%;
+	margin-top: 5%;
 	border: 5px solid black;
 	padding: 10px;
 
@@ -8,6 +25,76 @@
 
 .btn-am{
 	margin-left: 28%;
+	 white-space: normal !important;
 }
+.wrapper {
+  margin-right: 4%;
+  height: 100%;
+  min-height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.panel-home{
+	position: relative;
+	margin-left: 2%;
+	margin-right: 2%;
+	padding-bottom: 5%;
+	background-color: #BFB6BF
+}
+
+
+/*-------Casa de Show-------*/
+
+.panel-title{
+	padding-bottom: 2%;	
+}
+
+.panel-casa{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.col-md-offset-2{
+	padding-left:1%;
+}
+
+.btn-salvar{
+	width: 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
