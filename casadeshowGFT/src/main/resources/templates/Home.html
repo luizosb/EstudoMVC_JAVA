@@ -1,54 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layout">
 <head>
 <meta charset="UTF-8">
-<title>Casa de Show</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<title>Domum Amet - Home</title>
 </head>
-<body>
-	<nav class="navbar navbar-defaut navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header"></div>
-		</div>
-
-		<ul class="nav nav-tabs">
-			<li role="presentation"><img class="logo" src="/imagens/L_logo.png" width="2%" height="2%"></li>
-			<li role="presentation"><a href="/home">Home</a></li>
-			<li role="presentation"><a href="/home/casadeshow">Casa de Show</a></li>
-			<li role="presentation"><a href="/home/eventos">Eventos</a></li>
-			<li role="presentation"><a href="/home/historico">Histórico</a></li>
-		</ul>
-	</nav>
+<section layout:fragment="conteudo">
 	<div class="panel panel-home">
-	<div class="wrapper">
-	<div class="card-arctic" style="width: 15%;">
-		<img class="arctic monkeys" src="/imagens/arctic-monkeys-logo.png"  width="100%" height="248vh">
-		<div class="card-body">
-			<h5 class="card-title" align="center">Arctic Monkeys</h5>
-			<p class="card-text" align="center">The Arctic Monkeys está vindo, compre um ingresso agora!</p>
-			<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
+		<div class="wrapper">
+			<div class="card-arctic" style="width: 15%;">
+				<img class="arctic monkeys" src="/imagens/arctic-monkeys-logo.png"
+					width="100%" height="248vh">
+				<div class="card-body">
+					<h5 class="card-title" align="center">Arctic Monkeys</h5>
+					<p class="card-text" align="center">The Arctic Monkeys está vindo, compre um ingresso agora!</p>
+					<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
+				</div>
+			</div>
+			<div class="card-arctic" style="width: 15%;">
+				<img class="ed sheeran" src="/imagens/ed-logo.png" width="100%"
+					height="248vh">
+				<div class="card-body">
+					<h5 class="card-title" align="center">Ed Sheeran</h5>
+					<p class="card-text" align="center">Ed Sheeran está vindo, garanta seu ingresso agora!</p>
+					<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
+				</div>
+			</div>
+			<div class="card-arctic" style="width: 15%;">
+				<img class="costagold" src="/imagens/costagold.png" width="100%"
+					height="248vh">
+				<div class="card-body">
+					<h5 class="card-title" align="center">Costa Gold</h5>
+					<p class="card-text" align="center">Costa Gold está vindo, compre um ingresso agora!</p>
+					<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="card-arctic" style="width: 15%;">
-		<img class="ed sheeran" src="/imagens/ed-logo.png" width="100%" height="248vh">
-		<div class="card-body">
-			<h5 class="card-title" align="center">Ed Sheeran</h5>
-			<p class="card-text" align="center">Ed Sheeran está vindo, garanta seu ingresso agora!</p>
-			<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
-		</div>
-	</div>
-	<div class="card-arctic" style="width: 15%;">
-		<img class="costagold" src="/imagens/costagold.png"  width="100%" height="248vh">
-		<div class="card-body">
-			<h5 class="card-title" align="center">Costa Gold</h5>
-			<p class="card-text" align="center">Costa Gold está vindo, compre um ingresso agora!</p>
-			<a href="#" class="btn btn-am btn-primary">Compre aqui</a>
-		</div>
-	</div>
-	</div>
-	</div>
-</body>
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+</section>
 </html>

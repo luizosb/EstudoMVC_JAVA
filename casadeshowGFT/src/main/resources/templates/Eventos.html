@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Layout">
+<head>
+<meta charset="UTF-8">
+<title>Domum Amet - Eventos</title>
+</head>
+<section layout:fragment="conteudo">
+	<form class="form-horizontal">
+		<div class="panel panel-eventos panel-defaut">
+			<div class="panel heading">
+				<div class="clearfix">
+					<h3 style="padding-top: 1%; padding-bottom: 1%;"
+						class="panel-title panel-casa" align="center">Domum Amet -
+						Eventos</h3>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="genero" class="col-sm-2 control-label">Gênero</label>
+					<div class="col-sm-1">
+						<select class="form-control" id="genero" name="genero">
+							<option th:each="genero : ${todosGeneros}" th:value="${genero}"
+								th:text="${genero.genero}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="local" class="col-sm-2 control-label">Local</label>
+					<div class="col-sm-2">
+						<select class="form-control" id="local" name="local">
+							<option th:each="local : ${todosLocais}" th:value="${local}"
+								th:text="${local.local}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-defaut">
+				<div class="panel-heading">
+					<div class="clearfix">
+						<h1 class="panel-title aw-titulo-panel">Pesquisa de Eventos</h1>
+					</div>
+				</div>
+				<div class="panel-body panel-tabela">
+					<div class="table-responsive">
+						<table
+							class="table table-bordered table-hover table-condensed table ">
+							<thead>
+								<tr>
+									<th class="text-center col-md-1">#</th>
+									<th class="text-left col-md-2">Banda</th>
+									<th class="text-center col-md-2">Data do Show</th>
+									<th class="text-center col-md-1">Gênero</th>
+									<th class="text-left col-md-4">Informações</th>
+									<th class="text-center col-md-1">Local</th>
+									<th class="text-center col-md-1">Preço</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="evento : ${shows}">
+									<td class="text-center" th:text="${evento.codigo}">1</td>
+									<td class="text-left" th:text="${evento.banda"}></td>
+									<td class="text-center" th:text="${evento.data}"></td>
+									<td class="text-center" th:text="${evento.genero}"></td>
+									<td class="text-left" th:text="${evento.info}"></td>
+									<td class="text-center" th:text="${evento.local}"></td>
+									<td class="text-center" th:text="${evento.preco}"></td>
+								</tr>
+								<tr>
+									<td colspan="7">Nenhum evento foi encontrado!</td>
+								</tr>
+
+							</tbody>
+
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+</html>

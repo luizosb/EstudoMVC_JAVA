@@ -67,11 +67,29 @@ body{
 	width: 10%;
 }
 
+.alert {
+	margin-left: 10%;
+	margin-right:10%;
+}
 
 
+/*------Eventos-------*/
 
+.panel-eventos{
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-bottom: 10%;
+}
 
+.aw-titulo-panel{
+	float: left;
+	padding-top: 2px;
+	
+}
 
+.panel-tabela{
+	padding-top:0px;
+}
 
 
 
