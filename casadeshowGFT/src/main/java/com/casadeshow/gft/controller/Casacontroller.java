@@ -2,13 +2,18 @@ package com.casadeshow.gft.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.casadeshow.gft.model.Eventos;
 import com.casadeshow.gft.model.Genero;
@@ -19,6 +24,10 @@ import com.casadeshow.gft.repository.Casas;
 @RequestMapping("/home")
 public class Casacontroller {
 	
+	
+	private final String EVENTO_VIEW = "Eventos";
+	private final String CASA_VIEW = "Casadeshow";
+	
 	@Autowired
 	private Casas show;
 	
@@ -28,26 +37,24 @@ public class Casacontroller {
 		return mv;	
 	}
 	
+	
+	//Casa de Show controller
 	@RequestMapping("/casadeshow")
 	public ModelAndView casadeshow() {
 		ModelAndView mv = new ModelAndView("Casadeshow");
+		mv.addObject(new Eventos());
 		return mv;
 	}
 	
+	
 	@RequestMapping (value = "/casadeshow", method = RequestMethod.POST)
-	public ModelAndView salvar(Eventos casashow) {
-		show.save(casashow);
-		ModelAndView mv = new ModelAndView("Casadeshow");
-		mv.addObject("mensagem", "Evento marcado com sucesso!");
-		return mv;
-	}
-
-	@RequestMapping
-	public ModelAndView pesquisar() {
-		List<Eventos> todosEventos = show.findAll();
-		ModelAndView mv = new ModelAndView("Eventos");
-		mv.addObject("eventos", todosEventos);				
-		return mv;
+	public String salvar(@Validated Eventos eventos, Errors errors, RedirectAttributes attributes) {
+		if (errors.hasErrors()) {
+			return "Casadeshow";
+		}
+		show.save(eventos);
+		attributes.addFlashAttribute("mensagem", "Evento marcado com sucesso!");
+		return "redirect:/home/casadeshow";
 	}
 	
 	@ModelAttribute("todosLocais")
@@ -59,11 +66,42 @@ public class Casacontroller {
 	public List<Genero> todosGeneros(){
 		return Arrays.asList(Genero.values());	
 	}
+	//Eventos Controller
 	@RequestMapping("/eventos")
-	public ModelAndView eventos() {
-		ModelAndView mv = new ModelAndView("Eventos");
+	public ModelAndView eventospesquisar() {
+		List<Eventos> todosEventos = show.findAll();
+		ModelAndView mv = new ModelAndView(EVENTO_VIEW);
+		mv.addObject("eventos", todosEventos);				
 		return mv;
 	}
-}
 	
-
+	@RequestMapping(value= "/casadeshow/{codigo}")
+	public ModelAndView edicao(@PathVariable Long codigo, Optional<Eventos> eventos) {
+		ModelAndView mv = new ModelAndView(CASA_VIEW);
+		mv.addObject(eventos.get());
+		return mv;
+	}
+	
+	@RequestMapping(value ="/eventos/{codigo}", method=RequestMethod.POST)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
+		show.deleteById(codigo);
+		attributes.addFlashAttribute("mensagem", "Evento excluido com sucesso!");
+		return "redirect:/home/eventos";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

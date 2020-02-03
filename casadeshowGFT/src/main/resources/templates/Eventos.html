@@ -9,6 +9,7 @@
 </head>
 <section layout:fragment="conteudo">
 	<form class="form-horizontal">
+	   <div layout:insert="MensagemGeral"></div>
 		<div class="panel panel-eventos panel-defaut">
 			<div class="panel heading">
 				<div class="clearfix">
@@ -45,31 +46,40 @@
 				</div>
 				<div class="panel-body panel-tabela">
 					<div class="table-responsive">
-						<table
-							class="table table-bordered table-hover table-condensed table ">
+						<table class="table table-bordered table-hover table-condensed table ">
 							<thead>
 								<tr>
 									<th class="text-center col-md-1">#</th>
 									<th class="text-left col-md-2">Banda</th>
-									<th class="text-center col-md-2">Data do Show</th>
+									<th class="text-center col-md-1">Data do Show</th>
 									<th class="text-center col-md-1">Gênero</th>
 									<th class="text-left col-md-4">Informações</th>
 									<th class="text-center col-md-1">Local</th>
 									<th class="text-center col-md-1">Preço</th>
+									<th class="col-md-1"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="evento : ${shows}">
+								<tr th:each="evento : ${eventos}">
 									<td class="text-center" th:text="${evento.codigo}">1</td>
-									<td class="text-left" th:text="${evento.banda"}></td>
-									<td class="text-center" th:text="${evento.data}"></td>
+									<td class="text-left" th:text="${evento.banda}"></td>
+									<td class="text-center" th:text="${{evento.data}}"></td>
 									<td class="text-center" th:text="${evento.genero}"></td>
 									<td class="text-left" th:text="${evento.info}"></td>
 									<td class="text-center" th:text="${evento.local}"></td>
-									<td class="text-center" th:text="${evento.preco}"></td>
+									<td class="text-center" th:text="|R$ ${{evento.preco}}|"></td>
+									<td class="text-center">
+										<a class="btn btn-link btn-xs" th:href="@{/home/casadeshow/{ID}(ID=${evento.codigo})}">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</a>
+										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExcluirModal"
+										th:attr="data-codigo=${evento.codigo}, data-banda=${evento.banda}">
+											<span class="glyphicon glyphicon-remove"></span>
+										</a>
+									</td>
 								</tr>
 								<tr>
-									<td colspan="7">Nenhum evento foi encontrado!</td>
+									<td colspan="7" th:if="${#lists.isEmpty(eventos)}">Nenhum evento foi encontrado!</td>
 								</tr>
 
 							</tbody>
@@ -79,7 +89,27 @@
 					</div>
 				</div>
 			</div>
+			<div layout:insert="ConfirmacaoExcluir"></div>
+			
 		</div>
 	</form>
 </section>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
