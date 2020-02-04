@@ -9,7 +9,7 @@
 </head>
 <section layout:fragment="conteudo">
 	<form class="form-horizontal">
-	   <div layout:insert="MensagemGeral"></div>
+	    <div layout:insert="MensagemGeral"></div>
 		<div class="panel panel-eventos panel-defaut">
 			<div class="panel heading">
 				<div class="clearfix">
@@ -69,12 +69,13 @@
 									<td class="text-center" th:text="${evento.local}"></td>
 									<td class="text-center" th:text="|R$ ${{evento.preco}}|"></td>
 									<td class="text-center">
-										<a class="btn btn-link btn-xs" th:href="@{/home/casadeshow/{ID}(ID=${evento.codigo})}">
+										<a class="btn btn-link btn-xs" th:href="@{/home/casadeshow/{ID}(ID=${evento.codigo})}" 
+										title="Editar" rel="tooltip" data-placement="top">
 											<span class="glyphicon glyphicon-pencil"></span>
 										</a>
-										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExcluirModal"
-										th:attr="data-codigo=${evento.codigo}, data-banda=${evento.banda}">
-											<span class="glyphicon glyphicon-remove"></span>
+										<a class="btn btn-link btn-xs" th:href="@{/home/eventos/{ID}(ID=${evento.codigo})}" 
+										title="Excluir" rel="tooltip" data-placement="top">
+									  	<span class="glyphicon glyphicon-remove"></span>
 										</a>
 									</td>
 								</tr>

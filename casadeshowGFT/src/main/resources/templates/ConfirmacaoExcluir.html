@@ -3,13 +3,14 @@
 	xmlns:th="http://www.thymeleaf.org/"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-	<div class="modal fade" tabindex="-1" id="confirmacaoExcluirModal" data-keyboard="false" data-backdroap="static">
-		<div class="modal-dialog">
-		<form action="/home/eventos" method="POST">
-		<input type="hidden" name="_method" value="DELETE"/>
+<div class="modal fade" tabindex="-1" id="confirmarExcluirModal"
+	data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+		<form id="teste" th:attr="data-base='/home/eventos'" method="POST">
+			<input type="hidden" name="_method" value="DELETE"/>
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4> Você tem certeza?</h4>
+					<h4 class="modal-title">Você tem certeza?</h4>
 				</div>
 				<div class="modal-body">
 					<span>Tem certeza que deseja apagar o evento?</span>
@@ -19,7 +20,7 @@
 					<button type="submit" class="btn btn-primary">Excluir</button>
 				</div>
 			</div>
-			</form>
-		</div>
+		</form>
 	</div>
+</div>
 </html>

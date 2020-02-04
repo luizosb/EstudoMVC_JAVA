@@ -26,12 +26,6 @@ layout:decorator="Layout">
 						<input type="text" class="form-control" id="banda" th:field="*{banda}"/>
 					</div>
 				</div>
-				<div class="form-group" th:classappend="${#fields.hasErrors('data')} ? has-error">
-					<label for="data" class="col-sm-2 control-label">Data do Show</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" id="data" th:field="*{data}" />
-					</div>
-				</div>
 				<div class="form-group" th:classappend="${#fields.hasErrors('preco')} ? has-error">
 					<label for="data" class="col-sm-2 control-label">Preço do Ingresso</label>
 					<div class="col-sm-2">
@@ -52,6 +46,14 @@ layout:decorator="Layout">
 						<select class="form-control" id ="local" name="local">
 							<option th:each="local : ${todosLocais}" th:value="${local}" th:text="${local.local}"></option>
 						</select> 
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('data')} ? has-error">
+					<label for="data" class="col-sm-2 control-label">Data do Show</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="data" th:field="*{data}" 
+						data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+						data-date-autoclose="true" data-date-today-highlight="true" />
 					</div>
 				</div>
 				<div class="form-group" th:classappend="${#fields.hasErrors('info')} ? has-error">

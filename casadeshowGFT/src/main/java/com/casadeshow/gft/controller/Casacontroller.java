@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -39,6 +40,7 @@ public class Casacontroller {
 	
 	
 	//Casa de Show controller
+	
 	@RequestMapping("/casadeshow")
 	public ModelAndView casadeshow() {
 		ModelAndView mv = new ModelAndView("Casadeshow");
@@ -52,9 +54,16 @@ public class Casacontroller {
 		if (errors.hasErrors()) {
 			return "Casadeshow";
 		}
+		
+		
+		try {
 		show.save(eventos);
 		attributes.addFlashAttribute("mensagem", "Evento marcado com sucesso!");
 		return "redirect:/home/casadeshow";
+		} catch(DataIntegrityViolationException e) {
+			errors.rejectValue("data", null, "Formato de data inválido.");
+			return CASA_VIEW;
+		}
 	}
 	
 	@ModelAttribute("todosLocais")
@@ -66,7 +75,9 @@ public class Casacontroller {
 	public List<Genero> todosGeneros(){
 		return Arrays.asList(Genero.values());	
 	}
+	
 	//Eventos Controller
+	
 	@RequestMapping("/eventos")
 	public ModelAndView eventospesquisar() {
 		List<Eventos> todosEventos = show.findAll();
@@ -82,21 +93,13 @@ public class Casacontroller {
 		return mv;
 	}
 	
-	@RequestMapping(value ="/eventos/{codigo}", method=RequestMethod.POST)
-	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
+	@RequestMapping(value ="/eventos/{codigo}")
+	public ModelAndView excluir(@PathVariable Long codigo, RedirectAttributes attributes){
+		ModelAndView mv = new ModelAndView("redirect:/home/eventos");
 		show.deleteById(codigo);
 		attributes.addFlashAttribute("mensagem", "Evento excluido com sucesso!");
-		return "redirect:/home/eventos";
+		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
