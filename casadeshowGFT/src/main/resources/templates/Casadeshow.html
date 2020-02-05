@@ -29,7 +29,7 @@ layout:decorator="Layout">
 				<div class="form-group" th:classappend="${#fields.hasErrors('preco')} ? has-error">
 					<label for="data" class="col-sm-2 control-label">Preço do Ingresso</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="preco" th:field="*{preco}" />
+						<input type="text" class="form-control js-currency" id="preco" th:field="*{preco}" />
 					</div>
 				</div>
 				<div class="form-group" >

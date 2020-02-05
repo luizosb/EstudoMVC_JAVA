@@ -8,7 +8,7 @@
 <title>Domum Amet - Eventos</title>
 </head>
 <section layout:fragment="conteudo">
-	<form class="form-horizontal">
+	<form class="form-horizontal" method ="GET" th:object="${filtro}">
 	    <div layout:insert="MensagemGeral"></div>
 		<div class="panel panel-eventos panel-defaut">
 			<div class="panel heading">
@@ -18,32 +18,28 @@
 						Eventos</h3>
 				</div>
 			</div>
-			<div class="panel-body">
-				<div class="form-group">
-					<label for="genero" class="col-sm-2 control-label">Gênero</label>
-					<div class="col-sm-1">
-						<select class="form-control" id="genero" name="genero">
-							<option th:each="genero : ${todosGeneros}" th:value="${genero}"
-								th:text="${genero.genero}"></option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="local" class="col-sm-2 control-label">Local</label>
-					<div class="col-sm-2">
-						<select class="form-control" id="local" name="local">
-							<option th:each="local : ${todosLocais}" th:value="${local}"
-								th:text="${local.local}"></option>
-						</select>
-					</div>
-				</div>
-			</div>
 			<div class="panel panel-defaut">
 				<div class="panel-heading">
 					<div class="clearfix">
 						<h1 class="panel-title aw-titulo-panel">Pesquisa de Eventos</h1>
 					</div>
 				</div>
+			<div class="panel-body">
+
+				<div class="form-group">
+					<div class="col-md-4">
+						<div class="input-group">
+							<input class="form-control" placeholder="Qual o evento que está procurando?" autofocus="autofocus" name="banda"
+							th:field="*{banda}"></input>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 				<div class="panel-body panel-tabela">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover table-condensed table ">
@@ -96,21 +92,4 @@
 	</form>
 </section>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

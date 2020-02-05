@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -20,17 +19,23 @@ import com.casadeshow.gft.model.Eventos;
 import com.casadeshow.gft.model.Genero;
 import com.casadeshow.gft.model.Local;
 import com.casadeshow.gft.repository.Casas;
+import com.casadeshow.gft.repository.filter.EventoFilter;
+import com.casadeshow.gft.services.EventoService;
 
 @Controller
 @RequestMapping("/home")
 public class Casacontroller {
 	
 	
-	private final String EVENTO_VIEW = "Eventos";
-	private final String CASA_VIEW = "Casadeshow";
+	private static final String EVENTO_VIEW = "Eventos";
+	private static final String CASA_VIEW = "Casadeshow";
+	private static final String HISTORICO_VIEW = "Historico";
 	
 	@Autowired
 	private Casas show;
+	
+	@Autowired
+	private EventoService eventoService;
 	
 	@RequestMapping
 	public ModelAndView home() {
@@ -57,11 +62,11 @@ public class Casacontroller {
 		
 		
 		try {
-		show.save(eventos);
+		eventoService.salvar(eventos);
 		attributes.addFlashAttribute("mensagem", "Evento marcado com sucesso!");
 		return "redirect:/home/casadeshow";
-		} catch(DataIntegrityViolationException e) {
-			errors.rejectValue("data", null, "Formato de data inválido.");
+		} catch(IllegalArgumentException e) {
+			errors.rejectValue("data", null, e.getMessage());
 			return CASA_VIEW;
 		}
 	}
@@ -77,10 +82,10 @@ public class Casacontroller {
 	}
 	
 	//Eventos Controller
-	
+		
 	@RequestMapping("/eventos")
-	public ModelAndView eventospesquisar() {
-		List<Eventos> todosEventos = show.findAll();
+	public ModelAndView eventospesquisar(@ModelAttribute("filtro") EventoFilter filtro) {
+		List<Eventos> todosEventos = eventoService.filtrar(filtro);
 		ModelAndView mv = new ModelAndView(EVENTO_VIEW);
 		mv.addObject("eventos", todosEventos);				
 		return mv;
@@ -96,13 +101,18 @@ public class Casacontroller {
 	@RequestMapping(value ="/eventos/{codigo}")
 	public ModelAndView excluir(@PathVariable Long codigo, RedirectAttributes attributes){
 		ModelAndView mv = new ModelAndView("redirect:/home/eventos");
-		show.deleteById(codigo);
+		eventoService.excluir(codigo);
 		attributes.addFlashAttribute("mensagem", "Evento excluido com sucesso!");
 		return mv;
 	}
 	
+	//Histórico Controller
 	
-	
+	@RequestMapping("/historico")
+	public ModelAndView historico() {
+		ModelAndView mv = new ModelAndView(HISTORICO_VIEW);
+		return mv;
+	}
 	
 	
 	
