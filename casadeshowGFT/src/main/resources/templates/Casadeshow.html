@@ -73,6 +73,33 @@ layout:decorator="Layout">
 						<input type="image" accept="image/*" class="form-control" id="imagem" name="imagem" />
 					</div> -->
 				</div>
+				<div class="panel-body">
+				<div class="panel-body panel-tabela">
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-condensed table ">
+							<thead>
+								<tr>
+									<th class="text-center col-md-1">Gênero</th>
+									<th class="text-center col-md-1">Local</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="evento : ${eventos}">
+									
+									<td class="text-center" th:text="${evento.genero}"></td>
+									<td class="text-center" th:text="${evento.local}"></td>
+								
+								</tr>
+								<tr>
+									<td colspan="2" th:if="${#lists.isEmpty(eventos)}">Nenhum ingresso foi comprado!</td>
+								</tr>
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>			
 			</div>
 	</form>
 	
